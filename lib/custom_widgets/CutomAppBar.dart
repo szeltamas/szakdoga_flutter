@@ -15,16 +15,16 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       appBar: AppBar(
         leading: Padding(
           padding: const EdgeInsets.only(left: 8.0), // Adjust padding here
-          child: Icon(FontAwesomeIcons.leaf, color: Colors.white),
+          child: Icon(FontAwesomeIcons.leaf, color: Colors.black),
         ),
         title: Row(
           children: [
             SizedBox(width: 0), // Adjust the space between icon and text
             Text(
-              "Greenlike".toUpperCase(),
+              "Greenlike",
               style: TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
+                color: Colors.black,
+                //fontWeight: FontWeight.bold,
                 fontSize: 28, // Optional: Adjust font size if needed
               ),
             ),

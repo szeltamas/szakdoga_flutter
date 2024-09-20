@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../custom_widgets/CustomButton.dart';
-import '../custom_widgets/CutomAppBar.dart';
 import 'IdentifyScreen.dart'; // Import the IdentifyScreen
 import 'BrowseScreen.dart'; // Import the BrowseScreen
 
@@ -10,7 +9,17 @@ class MainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(), // Use the custom AppBar
+      appBar: AppBar(
+        backgroundColor: Colors.lightGreen,
+        title: Row(
+          children: [
+            Icon(Icons.eco, color: Colors.black, size: 36), // Leaf icon
+            SizedBox(width: 10), // Space between icon and text
+            Text('Greenlike'), // Title text
+          ],
+        ),
+        centerTitle: true, // Center the title for consistency
+      ),
       body: Stack(
         children: [
           Container(

@@ -40,7 +40,16 @@ class _IdentifyScreenState extends State<IdentifyScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(), // Use the custom AppBar
+      appBar: AppBar(
+        title: Text('Identify Plant'),  // Title of the screen
+        backgroundColor: Colors.lightGreen,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.black, size: 28),
+          onPressed: () {
+            Navigator.pop(context); // Go back to MainPage
+          },
+        ),
+      ),
       body: Stack(
         children: [
           Container(
@@ -86,25 +95,13 @@ class _IdentifyScreenState extends State<IdentifyScreen> {
               ),
             ),
           ),
-          // The dashboard-like footer
           Positioned(
             bottom: 0,
             left: 0,
             right: 0,
             child: Container(
-              height: 80,
-              color: Colors.lightGreen,
-              child: Row(
-                children: [
-                  IconButton(
-                    icon: Icon(Icons.arrow_back, color: Colors.white, size: 44),
-                    onPressed: () {
-                      Navigator.pop(context); // Go back to MainPage
-                    },
-                  ),
-                  Spacer(),
-                ],
-              ),
+              height: 60, // Height of the dashboard-like footer
+              color: Colors.lightGreen, // Light green color for the footer
             ),
           ),
         ],
