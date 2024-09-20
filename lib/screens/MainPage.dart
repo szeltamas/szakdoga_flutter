@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../custom_widgets/CustomButton.dart';
 import '../custom_widgets/CutomAppBar.dart';
 import 'IdentifyScreen.dart'; // Import the IdentifyScreen
+import 'BrowseScreen.dart'; // Import the BrowseScreen
 
 class MainPage extends StatelessWidget {
   const MainPage({super.key});
@@ -41,7 +42,12 @@ class MainPage extends StatelessWidget {
                     CustomButton(
                       text: "Browse",
                       onPressed: () {
-                        print("Browse button pressed");
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => BrowseScreen(),
+                          ),
+                        );
                       },
                     ),
                   ],
