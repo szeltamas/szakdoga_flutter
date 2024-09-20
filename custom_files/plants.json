@@ -1,0 +1,412 @@
+{
+    "plant_descriptions": [
+        {
+            "name": "alpine sea holly",
+            "description": "A hardy perennial known for its spiky, steel-blue flowers and silvery foliage, often found in alpine and rock gardens. It thrives in well-drained soil and full sun."
+        },
+        {
+            "name": "anthurium",
+            "description": "A popular tropical plant with glossy, heart-shaped leaves and striking, waxy, bright red or pink flowers, often called flamingo flowers. It prefers warm, humid environments."
+        },
+        {
+            "name": "artichoke",
+            "description": "A thistle-like perennial plant cultivated for its edible flower buds, which are harvested before the flowers bloom. The large, silvery-green leaves add a bold texture to gardens."
+        },
+        {
+            "name": "azalea",
+            "description": "A flowering shrub belonging to the Rhododendron genus, known for its vibrant and showy blooms that range in color from pink and red to white and purple. It thrives in acidic soil and partial shade."
+        },
+        {
+            "name": "ball moss",
+            "description": "An epiphytic bromeliad that grows on trees, with ball-shaped clumps of gray-green foliage. Despite its name, it is not a moss but rather a plant that absorbs moisture and nutrients from the air."
+        },
+        {
+            "name": "balloon flower",
+            "description": "A herbaceous perennial known for its balloon-like buds that burst open into star-shaped blue, pink, or white flowers. It is easy to grow and adds a whimsical touch to gardens."
+        },
+        {
+            "name": "barbeton daisy",
+            "description": "A bright and cheerful daisy with large, vibrant flowers in shades of red, orange, pink, and yellow. It is a popular ornamental plant, often grown in pots or as a garden border."
+        },
+        {
+            "name": "bearded iris",
+            "description": "A perennial plant with sword-like leaves and large, ruffled flowers in a wide range of colors, often with a 'beard' of soft hairs on the falls (lower petals). It prefers well-drained soil and full sun."
+        },
+        {
+            "name": "bee balm",
+            "description": "A fragrant perennial herb that produces vibrant, tubular flowers in shades of red, pink, purple, or white. It is a favorite of bees, butterflies, and hummingbirds."
+        },
+        {
+            "name": "bird of paradise",
+            "description": "A striking tropical plant with large, banana-like leaves and unique flowers that resemble a colorful bird in flight. It is a popular choice for exotic gardens and indoor decor."
+        },
+        {
+            "name": "bishop of llandaff",
+            "description": "A variety of dahlia with dark, almost black foliage and vivid red flowers. It is a showstopper in the garden and attracts bees and butterflies."
+        },
+        {
+            "name": "black-eyed susan",
+            "description": "A cheerful and hardy perennial with bright yellow petals and a dark brown central cone. It is a staple in wildflower gardens and meadows."
+        },
+        {
+            "name": "blackberry lily",
+            "description": "A unique perennial with orange-spotted flowers that resemble leopard spots, followed by black seed pods that look like blackberries. It adds interest to borders and cottage gardens."
+        },
+        {
+            "name": "blanket flower",
+            "description": "A tough, drought-tolerant perennial with daisy-like flowers in vibrant shades of red, orange, and yellow. It blooms throughout the summer and is a favorite in pollinator gardens."
+        },
+        {
+            "name": "bolero deep blue",
+            "description": "A type of African violet with deep blue, velvety flowers and dark green, fuzzy leaves. It is a popular houseplant, known for its compact size and profuse blooming."
+        },
+        {
+            "name": "bougainvillea",
+            "description": "A vigorous, woody vine with bright, papery bracts in shades of pink, purple, red, or orange. It is a popular choice for adding color to walls, fences, and trellises in warm climates."
+        },
+        {
+            "name": "bromelia",
+            "description": "A tropical plant with stiff, spiky leaves and colorful central rosettes. It is often grown as a houseplant or in warm, humid gardens."
+        },
+        {
+            "name": "buttercup",
+            "description": "A small, cheerful wildflower with bright yellow, cup-shaped flowers. It is commonly found in meadows and pastures and is often associated with childhood and folklore."
+        },
+        {
+            "name": "californian poppy",
+            "description": "The state flower of California, known for its bright orange, cup-shaped flowers that bloom in spring and summer. It is a drought-tolerant annual that thrives in full sun."
+        },
+        {
+            "name": "camellia",
+            "description": "An evergreen shrub with glossy leaves and large, rose-like flowers in shades of pink, red, or white. It blooms in winter or early spring, providing color when few other plants do."
+        },
+        {
+            "name": "canna lily",
+            "description": "A tropical perennial with large, paddle-shaped leaves and vibrant flowers in shades of red, orange, yellow, or pink. It adds a lush, exotic look to gardens."
+        },
+        {
+            "name": "canterbury bells",
+            "description": "A biennial plant with tall spikes of bell-shaped flowers in shades of blue, purple, pink, or white. It is a favorite in cottage gardens and makes an excellent cut flower."
+        },
+        {
+            "name": "cape flower",
+            "description": "A general term often referring to various flowering plants native to the Cape region of South Africa, known for their colorful and diverse blooms."
+        },
+        {
+            "name": "carnation",
+            "description": "A popular cut flower known for its ruffled petals and clove-like scent. Carnations come in a wide range of colors and are often used in bouquets and floral arrangements."
+        },
+        {
+            "name": "cautleya spicata",
+            "description": "A striking perennial with bright yellow or orange flowers that emerge from deep red bracts. It prefers moist, shaded areas and adds a tropical touch to gardens."
+        },
+        {
+            "name": "clematis",
+            "description": "A versatile climbing plant known for its large, star-shaped flowers in a variety of colors. It is perfect for trellises, fences, and arbors, and blooms from spring to fall."
+        },
+        {
+            "name": "colt's foot",
+            "description": "A wildflower with yellow, dandelion-like flowers that bloom early in the spring before the leaves appear. It has been traditionally used in herbal medicine."
+        },
+        {
+            "name": "columbine",
+            "description": "A delicate perennial with uniquely shaped, spurred flowers in shades of blue, purple, pink, red, or yellow. It attracts hummingbirds and is often found in woodland gardens."
+        },
+        {
+            "name": "common dandelion",
+            "description": "A well-known wildflower with bright yellow flowers that turn into fluffy seed heads. While often considered a weed, dandelions are edible and have medicinal properties."
+        },
+        {
+            "name": "corn poppy",
+            "description": "A vibrant annual wildflower with delicate, papery red petals and a black center. It is a symbol of remembrance and is often associated with World War I."
+        },
+        {
+            "name": "cyclamen",
+            "description": "A tuberous perennial with heart-shaped leaves and delicate, nodding flowers in shades of pink, red, white, or purple. It is often grown as a houseplant or in shaded gardens."
+        },
+        {
+            "name": "daffodil",
+            "description": "A cheerful spring-blooming bulb with bright yellow or white flowers. Daffodils are a symbol of renewal and are often planted in large drifts for a stunning display."
+        },
+        {
+            "name": "desert-rose",
+            "description": "A succulent plant with a thick, swollen stem and vibrant pink or red flowers. It is drought-tolerant and makes a striking specimen plant in containers."
+        },
+        {
+            "name": "english marigold",
+            "description": "Also known as calendula, this hardy annual has bright orange or yellow flowers that bloom from spring to frost. It is often used in herbal remedies and skincare products."
+        },
+        {
+            "name": "fire lily",
+            "description": "A tropical bulbous plant with fiery red-orange flowers. It is often grown in containers or as a houseplant in cooler climates, adding a bold splash of color."
+        },
+        {
+            "name": "foxglove",
+            "description": "A tall, biennial plant with tubular flowers that hang down from the stem, typically in shades of pink, purple, or white. It is toxic if ingested but admired for its beauty."
+        },
+        {
+            "name": "frangipani",
+            "description": "A tropical tree with fragrant, waxy flowers that come in shades of white, yellow, pink, or red. It is often associated with Hawaiian leis and adds a sweet scent to gardens."
+        },
+        {
+            "name": "fritillary",
+            "description": "A group of flowering plants known for their checkered, bell-shaped flowers. The most famous is the snake's head fritillary, which has purple and white checkerboard petals."
+        },
+        {
+            "name": "garden phlox",
+            "description": "A perennial plant with clusters of fragrant, star-shaped flowers in shades of pink, white, red, or purple. It is a staple in cottage gardens and attracts butterflies."
+        },
+        {
+            "name": "gaura",
+            "description": "A long-blooming perennial with delicate, butterfly-like flowers in shades of white or pink. It adds a light, airy texture to gardens and is drought-tolerant."
+        },
+        {
+            "name": "gazania",
+            "description": "A sun-loving annual with large, daisy-like flowers in vibrant shades of yellow, orange, red, or pink. It is drought-tolerant and perfect for borders or containers."
+        },
+        {
+            "name": "geranium",
+            "description": "A popular garden plant with rounded leaves and clusters of small, colorful flowers. Geraniums are versatile and can be grown in beds, borders, or containers."
+        },
+        {
+            "name": "giant white arum lily",
+            "description": "A striking perennial with large, white, trumpet-shaped flowers and glossy, arrow-shaped leaves. It is often used in floral arrangements and grows well in moist, shaded areas."
+        },
+        {
+            "name": "globe thistle",
+            "description": "A hardy perennial with spiky, globe-shaped blue or purple flowers that bloom in mid to late summer. It adds a unique texture to borders and is drought-tolerant."
+        },
+        {
+            "name": "globe-flower",
+            "description": "A perennial with bright yellow, ball-shaped flowers that bloom in late spring. It prefers moist, boggy soil and adds a cheerful splash of color to gardens."
+        },
+        {
+            "name": "grape hyacinth",
+            "description": "A spring-blooming bulb with clusters of small, bell-shaped flowers that resemble a bunch of grapes. The flowers are typically blue but can also be white or purple."
+        },
+        {
+            "name": "great masterwort",
+            "description": "A herbaceous perennial with clusters of small, star-shaped flowers surrounded by spiky bracts. The flowers are usually white or pink, and it thrives in partial shade."
+        },
+        {
+            "name": "hard-leaved pocket orchid",
+            "description": "A small, epiphytic orchid with stiff, leathery leaves and delicate, star-shaped flowers. It is often grown in hanging baskets or mounted on trees."
+        },
+        {
+            "name": "hibiscus",
+            "description": "A tropical shrub with large, showy flowers in shades of red, pink, yellow, or white. Hibiscus is often used in hedges, as a specimen plant, or in containers."
+        },
+        {
+            "name": "hippeastrum",
+            "description": "A bulbous plant known for its large, trumpet-shaped flowers that bloom indoors in winter. The flowers come in shades of red, pink, orange, or white."
+        },
+        {
+            "name": "japanese anemone",
+            "description": "A fall-blooming perennial with elegant, cup-shaped flowers in shades of white, pink, or purple. It adds a touch of grace to shaded garden areas."
+        },
+        {
+            "name": "king protea",
+            "description": "A striking South African plant with large, spiky, bowl-shaped flowers surrounded by stiff, pointed petals. It is often used in exotic floral arrangements."
+        },
+        {
+            "name": "lenten rose",
+            "description": "A hardy perennial with leathery leaves and nodding, cup-shaped flowers that bloom in late winter to early spring. The flowers come in shades of white, pink, purple, or green."
+        },
+        {
+            "name": "lotus lotus",
+            "description": "A sacred aquatic plant with large, rounded leaves and striking, fragrant flowers that bloom in shades of pink or white. It is often associated with purity and spirituality."
+        },
+        {
+            "name": "love in the mist",
+            "description": "A charming annual with delicate, feathery foliage and unique, spiky flowers in shades of blue, white, pink, or purple. It is often used in cottage gardens and dried flower arrangements."
+        },
+        {
+            "name": "magnolia",
+            "description": "A large, deciduous or evergreen tree or shrub with showy, fragrant flowers in shades of white, pink, purple, or yellow. Magnolia is a symbol of the South and adds elegance to gardens."
+        },
+        {
+            "name": "mallow",
+            "description": "A group of flowering plants with large, cup-shaped flowers in shades of pink, purple, or white. Mallows are often used in cottage gardens and attract butterflies."
+        },
+        {
+            "name": "marigold",
+            "description": "A hardy annual with bright, daisy-like flowers in shades of yellow, orange, or red. Marigolds are often used in borders, beds, and containers, and are known for their pest-repelling properties."
+        },
+        {
+            "name": "mexican aster",
+            "description": "A fast-growing annual with feathery foliage and daisy-like flowers in shades of pink, purple, white, or orange. It is drought-tolerant and attracts butterflies."
+        },
+        {
+            "name": "mexican petunia",
+            "description": "A perennial with slender, upright stems and trumpet-shaped flowers in shades of blue, purple, pink, or white. It is often used in borders or as a ground cover."
+        },
+        {
+            "name": "monkshood",
+            "description": "A tall, herbaceous perennial with helmet-shaped blue or purple flowers. It is highly toxic if ingested, but its dramatic flowers make it a striking addition to gardens."
+        },
+        {
+            "name": "moon orchid",
+            "description": "A popular orchid with elegant, arching sprays of large, white or pale pink flowers. It is often grown as a houseplant and is admired for its long-lasting blooms."
+        },
+        {
+            "name": "morning glory",
+            "description": "A fast-growing annual vine with heart-shaped leaves and trumpet-shaped flowers that bloom in shades of blue, purple, pink, or white. Morning glories open in the morning and close by afternoon."
+        },
+        {
+            "name": "orange dahlia",
+            "description": "A vibrant, tuberous perennial with large, orange, double-flowered blooms. Dahlias are popular in summer and fall gardens and make excellent cut flowers."
+        },
+        {
+            "name": "osteospermum",
+            "description": "A daisy-like perennial with striking, brightly colored flowers in shades of purple, pink, yellow, or white. It is drought-tolerant and blooms from spring to fall."
+        },
+        {
+            "name": "oxeye daisy",
+            "description": "A hardy perennial with cheerful, white, daisy-like flowers with yellow centers. It is often found in wildflower meadows and is easy to grow."
+        },
+        {
+            "name": "passion flower",
+            "description": "A fast-growing vine with intricate, exotic flowers in shades of purple, blue, or white. The flowers are often followed by edible, egg-shaped fruits."
+        },
+        {
+            "name": "pelargonium",
+            "description": "Commonly known as geraniums, these are popular garden and container plants with fragrant, rounded leaves and clusters of brightly colored flowers."
+        },
+        {
+            "name": "peruvian lily",
+            "description": "A tuberous perennial with clusters of trumpet-shaped flowers in shades of pink, orange, red, or yellow, often with speckled throats. It is popular in floral arrangements."
+        },
+        {
+            "name": "petunia",
+            "description": "A popular annual with a wide range of flower colors and patterns. Petunias are often used in hanging baskets, containers, and garden beds for their long-lasting blooms."
+        },
+        {
+            "name": "pincushion flower",
+            "description": "A perennial with unique, pincushion-like flowers in shades of blue, purple, pink, or white. It is a favorite in cottage gardens and attracts butterflies."
+        },
+        {
+            "name": "pink primrose",
+            "description": "A hardy perennial with delicate, pink, cup-shaped flowers that bloom in spring and early summer. It is often used as a ground cover in sunny areas."
+        },
+        {
+            "name": "pink-yellow dahlia",
+            "description": "A showy tuberous perennial with large, bi-colored blooms in shades of pink and yellow. Dahlias are popular in summer and fall gardens and make excellent cut flowers."
+        },
+        {
+            "name": "poinsettia",
+            "description": "A tropical plant known for its bright red, pink, or white bracts that surround small yellow flowers. Poinsettias are popular during the Christmas season."
+        },
+        {
+            "name": "primula",
+            "description": "A group of perennials with rosettes of leaves and clusters of colorful flowers that bloom in early spring. Primulas prefer cool, moist conditions."
+        },
+        {
+            "name": "prince of wales feathers",
+            "description": "A variety of amaranth with tall, feathery plumes of deep red or purple flowers. It adds height and drama to gardens and is often used in dried flower arrangements."
+        },
+        {
+            "name": "purple coneflower",
+            "description": "A hardy perennial with large, daisy-like flowers in shades of purple or pink with a distinctive orange-brown cone center. It is popular in wildflower and pollinator gardens."
+        },
+        {
+            "name": "red ginger",
+            "description": "A tropical plant with striking, bright red, torch-like flower spikes. It is often used in exotic floral arrangements and adds a bold, tropical look to gardens."
+        },
+        {
+            "name": "rose",
+            "description": "A classic flowering shrub known for its fragrant, showy blooms in a wide range of colors. Roses are popular in gardens and as cut flowers, symbolizing love and beauty."
+        },
+        {
+            "name": "ruby-lipped cattleya",
+            "description": "A stunning orchid with large, fragrant flowers, typically in shades of white or pink with a deep ruby-red lip. It is a popular choice for corsages and floral arrangements."
+        },
+        {
+            "name": "siam tulip",
+            "description": "A tropical plant with large, tulip-shaped flowers in shades of pink, purple, or white. It is often grown as a houseplant or in warm, humid gardens."
+        },
+        {
+            "name": "silverbush",
+            "description": "A low-growing, evergreen shrub with silvery, hairy leaves and small, white, star-shaped flowers. It is drought-tolerant and often used as ground cover in rock gardens."
+        },
+        {
+            "name": "snapdragon",
+            "description": "A popular annual with tall spikes of colorful, dragon-shaped flowers that bloom in shades of pink, red, yellow, orange, or white. Snapdragons are a favorite in cottage gardens."
+        },
+        {
+            "name": "spear thistle",
+            "description": "A biennial plant with spiny leaves and tall stems topped with purple, thistle-like flowers. It is often considered a weed but provides nectar for pollinators."
+        },
+        {
+            "name": "spring crocus",
+            "description": "A spring-blooming bulb with cup-shaped flowers in shades of purple, yellow, white, or striped. Crocuses are among the first flowers to bloom in the spring."
+        },
+        {
+            "name": "stemless gentian",
+            "description": "A low-growing perennial with intense blue, trumpet-shaped flowers that bloom in late spring to early summer. It prefers well-drained soil and is often used in rock gardens."
+        },
+        {
+            "name": "sunflower",
+            "description": "A tall, annual plant with large, yellow, daisy-like flowers and edible seeds. Sunflowers are often grown for their ornamental value, as well as for their seeds and oil."
+        },
+        {
+            "name": "sweet pea",
+            "description": "A climbing annual with fragrant, butterfly-shaped flowers in shades of pink, purple, white, or red. Sweet peas are popular in cottage gardens and as cut flowers."
+        },
+        {
+            "name": "sweet william",
+            "description": "A biennial or short-lived perennial with clusters of small, fringed flowers in shades of pink, red, white, or purple. It is often grown in cottage gardens and borders."
+        },
+        {
+            "name": "sword lily",
+            "description": "Also known as gladiolus, this perennial has tall spikes of large, showy flowers in a range of colors. It is a popular cut flower and adds vertical interest to gardens."
+        },
+        {
+            "name": "thorn apple",
+            "description": "A large, annual plant with trumpet-shaped flowers and spiny fruit. It is highly toxic if ingested but adds a dramatic, tropical look to gardens."
+        },
+        {
+            "name": "tiger lily",
+            "description": "A hardy perennial with bright orange, spotted flowers and recurved petals. It is a favorite in cottage gardens and naturalized areas."
+        },
+        {
+            "name": "toad lily",
+            "description": "A shade-loving perennial with orchid-like, speckled flowers in shades of purple, pink, or white. It blooms in late summer to fall and adds interest to woodland gardens."
+        },
+        {
+            "name": "tree mallow",
+            "description": "A large, woody perennial with hibiscus-like flowers in shades of pink, purple, or white. It is often grown in coastal gardens and is tolerant of salt and wind."
+        },
+        {
+            "name": "tree poppy",
+            "description": "A tall, evergreen shrub with large, white, crepe-paper-like flowers with bright yellow centers. It is drought-tolerant and adds a striking presence to gardens."
+        },
+        {
+            "name": "trumpet creeper",
+            "description": "A vigorous, climbing vine with trumpet-shaped, orange-red flowers. It is a favorite of hummingbirds and adds a tropical look to gardens."
+        },
+        {
+            "name": "wallflower",
+            "description": "A biennial or short-lived perennial with clusters of fragrant flowers in shades of yellow, orange, red, or purple. Wallflowers are often grown in cottage gardens."
+        },
+        {
+            "name": "water lily",
+            "description": "A floating aquatic plant with rounded leaves and fragrant, cup-shaped flowers in shades of white, pink, yellow, or blue. Water lilies are often used in ponds and water gardens."
+        },
+        {
+            "name": "watercress",
+            "description": "A fast-growing aquatic or semi-aquatic plant with peppery-flavored leaves. It is often used in salads and as a garnish."
+        },
+        {
+            "name": "wild pansy",
+            "description": "A small, hardy perennial with delicate, tri-colored flowers in shades of purple, yellow, and white. Wild pansies are often found in meadows and woodland edges."
+        },
+        {
+            "name": "windflower",
+            "description": "A delicate perennial with nodding, cup-shaped flowers in shades of white, pink, or blue. Windflowers are often found in woodland and rock gardens."
+        },
+        {
+            "name": "yellow iris",
+            "description": "A hardy perennial with sword-like leaves and bright yellow, bearded flowers. It is often found in wetlands and adds a splash of color to water gardens."
+        }
+    ]
+}
