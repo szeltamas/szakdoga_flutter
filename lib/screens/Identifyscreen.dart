@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart'; // Import the image picker package
+import 'package:image_picker/image_picker.dart';
 import '../custom_widgets/CustomButton.dart';
-import 'dart:io'; // Needed to handle files
-import 'NewTestScreen.dart'; // Import the new test screen
+import 'dart:io';
+import 'package:tflite_flutter/tflite_flutter.dart';
+import 'dart:convert';
+import 'package:flutter/services.dart';
+import 'package:image/image.dart' as img;
+import 'ResultScreen.dart';
+import '../custom_widgets/CustomFooter.dart';
 
 class IdentifyScreen extends StatefulWidget {
   const IdentifyScreen({super.key});
@@ -12,49 +17,113 @@ class IdentifyScreen extends StatefulWidget {
 }
 
 class _IdentifyScreenState extends State<IdentifyScreen> {
-  final ImagePicker _picker = ImagePicker(); // Initialize the image picker
-  File? _selectedImage; // To hold the selected image
+  final ImagePicker _picker = ImagePicker();
+  File? _selectedImage;
+  String? _predictedLabel;
+  final String modelPath = "custom_files/model.tflite";
+  final String labelsPath = "custom_files/labels.json";
+  late Interpreter _interpreter;
+  List<String>? _labels;
 
-  // Method to open camera
+  @override
+  void initState() {
+    super.initState();
+    _loadModel();
+    _loadLabels();
+  }
+
+  Future<void> _loadModel() async {
+    _interpreter = await Interpreter.fromAsset(modelPath);
+  }
+
+  Future<void> _loadLabels() async {
+    final jsonString = await rootBundle.loadString(labelsPath);
+    _labels = List<String>.from(json.decode(jsonString));
+  }
+
   Future<void> _pickImageFromCamera() async {
     final XFile? image = await _picker.pickImage(source: ImageSource.camera);
-
     if (image != null) {
-      setState(() {
-        _selectedImage = File(image.path);
-      });
+      _selectedImage = File(image.path);
+      await _predictImage(_selectedImage!);
     }
   }
 
-  // Method to open gallery
   Future<void> _pickImageFromGallery() async {
     final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
-
     if (image != null) {
-      setState(() {
-        _selectedImage = File(image.path);
-      });
+      _selectedImage = File(image.path);
+      await _predictImage(_selectedImage!);
     }
   }
 
-  // Method to navigate to NewTestScreen
-  void _navigateToNewTestScreen() {
+  Future<void> _predictImage(File image) async {
+    var inputImage = await _preprocessImage(image);
+    var output = List.generate(1, (b) => List<double>.filled(_labels!.length, 0.0));
+
+    // Run inference
+    _interpreter.run(inputImage, output);
+
+    int predictedClass = output[0].indexOf(output[0].reduce((a, b) => a > b ? a : b));
+
+    // Navigate to ResultScreen
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => NewTestScreen()), // Navigate to NewTestScreen
+      MaterialPageRoute(
+        builder: (context) => ResultScreen(
+          classificationResult: _labels![predictedClass],
+          image: image,
+        ),
+      ),
     );
+  }
+
+  Future<List<List<List<List<double>>>>> _preprocessImage(File image) async {
+    final inputSize = 128;
+    final imageBytes = await image.readAsBytes();
+    img.Image? decodedImage = img.decodeImage(imageBytes);
+
+    // Resize the image
+    img.Image resizedImage = img.copyResize(decodedImage!, width: inputSize, height: inputSize);
+
+    // Create a 4D list for model input
+    List<List<List<List<double>>>> input = List.generate(
+      1, // Batch size = 1
+          (b) => List.generate(
+        inputSize,
+            (y) => List.generate(
+          inputSize,
+              (x) {
+            img.Pixel pixel = resizedImage.getPixel(x, y);
+            return [
+              pixel.r.toDouble(),
+              pixel.g.toDouble(),
+              pixel.b.toDouble(),
+            ];
+          },
+        ),
+      ),
+    );
+
+    return input;
+  }
+
+  @override
+  void dispose() {
+    _interpreter.close();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Identify Plant'),  // Title of the screen
+        title: Text('Identify Plant'),
         backgroundColor: Colors.lightGreen,
         leading: IconButton(
           icon: Icon(Icons.arrow_back, color: Colors.black, size: 28),
           onPressed: () {
-            Navigator.pop(context); // Go back to MainPage
+            Navigator.pop(context);
           },
         ),
       ),
@@ -74,52 +143,24 @@ class _IdentifyScreenState extends State<IdentifyScreen> {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    // Camera Button
                     CustomButton(
                       text: "Snap a picture",
                       icon: Icons.add_a_photo,
-                      onPressed: _pickImageFromCamera, // Open camera
+                      onPressed: _pickImageFromCamera,
                     ),
-                    SizedBox(height: 30), // Space between buttons
-
-                    // Gallery Button
+                    SizedBox(height: 30),
                     CustomButton(
                       text: "Select from local device",
                       icon: Icons.folder,
-                      onPressed: _pickImageFromGallery, // Open gallery
+                      onPressed: _pickImageFromGallery,
                     ),
                     SizedBox(height: 30),
-
-                    // Navigate to NewTestScreen Button
-                    CustomButton(
-                      text: "Go to New Test Screen",
-                      icon: Icons.navigate_next,
-                      onPressed: _navigateToNewTestScreen, // Navigate to NewTestScreen
-                    ),
-                    SizedBox(height: 30),
-
-                    // Display the selected image
-                    if (_selectedImage != null)
-                      Image.file(
-                        _selectedImage!,
-                        width: 300,
-                        height: 300,
-                        fit: BoxFit.cover,
-                      ),
                   ],
                 ),
               ),
             ),
           ),
-          Positioned(
-            bottom: 0,
-            left: 0,
-            right: 0,
-            child: Container(
-              height: 60, // Height of the dashboard-like footer
-              color: Colors.lightGreen, // Light green color for the footer
-            ),
-          ),
+          const FooterWidget(),
         ],
       ),
     );

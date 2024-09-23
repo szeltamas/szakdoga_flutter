@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../custom_widgets/CustomButton.dart';
 import 'IdentifyScreen.dart'; // Import the IdentifyScreen
 import 'BrowseScreen.dart'; // Import the BrowseScreen
+import '../custom_widgets/CustomFooter.dart';
 
 class MainPage extends StatelessWidget {
   const MainPage({super.key});
@@ -64,15 +65,7 @@ class MainPage extends StatelessWidget {
               ),
             ),
           ),
-          Positioned(
-            bottom: 0,
-            left: 0,
-            right: 0,
-            child: Container(
-              height: 80, // Height of the dashboard-like footer
-              color: Colors.lightGreen, // Light green color for the footer
-            ),
-          ),
+          const FooterWidget(),
         ],
       ),
     );
