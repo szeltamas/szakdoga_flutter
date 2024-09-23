@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
@@ -58,12 +59,12 @@ class _NewTestScreenState extends State<NewTestScreen> {
 
     // Run inference
     _interpreter.run(inputImage, output);
-    // debugPrint(output.toString());
 
     int predictedClass = output[0].indexOf(output[0].reduce((a, b) => a > b ? a : b));
-    debugPrint("Predicted Class" + predictedClass.toString());
-    debugPrint("Predicted Class Name" + " " + _labels![predictedClass]);
-    debugPrint(_labels![predictedClass] + " " + output[0][predictedClass].toString());
+    debugPrint("Predicted Class: $predictedClass");
+    debugPrint("Predicted Class Name: ${_labels![predictedClass]}");
+    debugPrint("${_labels![predictedClass]}: ${output[0][predictedClass]}");
+
     setState(() {
       _predictedLabel = _labels![predictedClass];
     });
@@ -74,21 +75,29 @@ class _NewTestScreenState extends State<NewTestScreen> {
     final imageBytes = await image.readAsBytes();
     img.Image? decodedImage = img.decodeImage(imageBytes);
 
-    // Resize and normalize
+    // Resize the image
     img.Image resizedImage = img.copyResize(decodedImage!, width: inputSize, height: inputSize);
 
     // Create a 4D list for model input
-    List<List<List<List<double>>>> input = List.generate(1, (b) => // Batch size = 1
-    List.generate(inputSize, (i) =>
-        List.generate(inputSize, (j) => [
-          img.getRed(resizedImage.getPixel(j, i)) / 255.0, // Normalize Red
-          img.getGreen(resizedImage.getPixel(j, i)) / 255.0, // Normalize Green
-          img.getBlue(resizedImage.getPixel(j, i)) / 255.0 // Normalize Blue
-        ])
-    )
+    List<List<List<List<double>>>> input = List.generate(
+      1, // Batch size = 1
+          (b) => List.generate(
+        inputSize,
+            (y) => List.generate(
+          inputSize,
+              (x) {
+            img.Pixel pixel = resizedImage.getPixel(x, y);
+            return [
+              pixel.r.toDouble(),
+              pixel.g.toDouble(),
+              pixel.b.toDouble(),
+            ];
+          },
+        ),
+      ),
     );
 
-    return input; // Returns a 4D list suitable for the model input
+    return input;
   }
 
   @override

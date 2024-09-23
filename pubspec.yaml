@@ -33,7 +33,8 @@ dependencies:
   font_awesome_flutter: 10.7.0
   image_picker: ^0.8.7+4
   path_provider: ^2.0.11
-  image: ^3.0.1
+  # image: ^3.0.1
+  image: ^4.0.15
   cupertino_icons: ^1.0.8
   tflite_flutter: ^0.11.0
   # flutter_tflite: ^1.0.1
