@@ -98,7 +98,7 @@ class BrowseScreen extends StatelessWidget {
                                   },
                                   child: Container(
                                     decoration: BoxDecoration(
-                                      color: Colors.white.withOpacity(0.85),
+                                      color: Colors.white.withOpacity(0.9),
                                       borderRadius: BorderRadius.circular(25.0),
                                     ),
                                     child: Column(

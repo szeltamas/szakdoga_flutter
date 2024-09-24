@@ -64,18 +64,34 @@ class _IdentifyScreenState extends State<IdentifyScreen> {
     // Run inference
     _interpreter.run(inputImage, output);
 
+    // Find the maximum probability and its class index
     int predictedClass = output[0].indexOf(output[0].reduce((a, b) => a > b ? a : b));
+    double maxProbability = output[0][predictedClass];
 
-    // Navigate to ResultScreen
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => ResultScreen(
-          classificationResult: _labels![predictedClass],
-          image: image,
+    // Check if the maximum probability is below 60%
+    if (maxProbability < 0.6) {
+      // Navigate to ResultScreen with no result message
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => ResultScreen(
+            classificationResult: "No result found",
+            image: image,
+          ),
         ),
-      ),
-    );
+      );
+    } else {
+      // Navigate to ResultScreen with the predicted label
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => ResultScreen(
+            classificationResult: _labels![predictedClass],
+            image: image,
+          ),
+        ),
+      );
+    }
   }
 
   Future<List<List<List<List<double>>>>> _preprocessImage(File image) async {
