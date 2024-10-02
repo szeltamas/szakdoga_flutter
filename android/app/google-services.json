@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "93417987846",
+    "project_id": "szakdoga-1ab4c",
+    "storage_bucket": "szakdoga-1ab4c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:93417987846:android:928a4faa93af03d1b94887",
+        "android_client_info": {
+          "package_name": "com.example.szakdoga"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAIbekbywOjRezHKT3eQjEoK9PQ25ioz-g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -7,7 +7,8 @@ import 'dart:convert';
 import 'package:flutter/services.dart';
 import 'package:image/image.dart' as img;
 import 'ResultScreen.dart';
-import '../custom_widgets/CustomFooter.dart';
+import '../custom_widgets/CustomFooter.dart'; // Import your FooterWidget
+
 
 class IdentifyScreen extends StatefulWidget {
   const IdentifyScreen({super.key});
