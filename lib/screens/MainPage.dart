@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:szakdoga/services/Auth.dart';
 import '../custom_widgets/CustomButton.dart';
 import 'IdentifyScreen.dart'; // Import the IdentifyScreen
 import 'BrowseScreen.dart'; // Import the BrowseScreen
@@ -7,8 +8,13 @@ import '../custom_widgets/CustomFooter.dart';
 class MainPage extends StatelessWidget {
   const MainPage({super.key});
 
+
+
   @override
   Widget build(BuildContext context) {
+
+    final AuthService _auth = AuthService();
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.lightGreen,
@@ -20,6 +26,14 @@ class MainPage extends StatelessWidget {
           ],
         ),
         centerTitle: true, // Center the title for consistency
+        actions: [
+          IconButton(
+            icon: Icon(Icons.logout, color: Colors.black), // Logout icon
+            onPressed: () async {
+              await _auth.signOut();
+            },
+          ),
+        ],
       ),
       body: Stack(
         children: [

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:szakdoga/services/Auth.dart';
 import '../custom_widgets/CustomButton.dart'; // Import your custom button widget
 import '../custom_widgets/CustomFooter.dart'; // Import your footer widget
 import 'Register.dart'; // Import the Register screen
@@ -11,10 +12,13 @@ class SignIn extends StatefulWidget {
 }
 
 class _SignInState extends State<SignIn> {
-  // Form key and controllers for email and password fields
+
+  final AuthService _auth = AuthService();
   final _formKey = GlobalKey<FormState>();
+
   String email = '';
   String password = '';
+  String error = '';
 
   @override
   Widget build(BuildContext context) {
@@ -101,9 +105,17 @@ class _SignInState extends State<SignIn> {
                                   borderRadius: BorderRadius.circular(12), // Rounded corners
                                 ),
                               ),
-                              onPressed: () {
+                              onPressed: () async {
                                 if (_formKey.currentState!.validate()) {
                                   // Perform sign-in logic here
+
+                                  dynamic result = await _auth.signinWithEmailAndPassword(email, password);
+                                  if(result == null)
+                                  {
+                                    setState(() => error = 'Could not sign in with credentials');
+                                  }
+
+
                                   print("Signing in with $email and password");
                                 }
                               },
@@ -131,6 +143,8 @@ class _SignInState extends State<SignIn> {
                               },
                               child: Text("Register", style: TextStyle(fontSize: 18)), // Larger text for better readability
                             ),
+                            SizedBox(height: 12.0,),
+                            Text(error, style: TextStyle(color: Colors.red, fontSize: 14.0),)
                           ],
                         ),
                       ],

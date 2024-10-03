@@ -1,4 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:szakdoga/services/Auth.dart';
 import '../custom_widgets/CustomFooter.dart'; // Import your footer widget
 
 class Register extends StatefulWidget {
@@ -9,9 +11,13 @@ class Register extends StatefulWidget {
 }
 
 class _RegisterState extends State<Register> {
+
+  final AuthService _auth = AuthService();
   final _formKey = GlobalKey<FormState>();
+
   String email = '';
   String password = '';
+  String error = '';
 
   @override
   Widget build(BuildContext context) {
@@ -94,14 +100,20 @@ class _RegisterState extends State<Register> {
                               borderRadius: BorderRadius.circular(12), // Rounded corners
                             ),
                           ),
-                          onPressed: () {
+                          onPressed: () async {
                             if (_formKey.currentState!.validate()) {
-                              // Perform register logic here
+                              dynamic result = await _auth.registerWithEmailAndPassword(email, password);
+                              if(result == null)
+                                {
+                                  setState(() => error = 'Please supply a valid email');
+                                }
                               print("Registering with $email and password");
                             }
                           },
                           child: Text("Register", style: TextStyle(fontSize: 18)), // Larger text for better readability
                         ),
+                        SizedBox(height: 12.0,),
+                        Text(error, style: TextStyle(color: Colors.red, fontSize: 14.0),)
                       ],
                     ),
                   ),
