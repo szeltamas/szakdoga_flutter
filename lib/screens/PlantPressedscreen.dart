@@ -1,12 +1,15 @@
+/*
 import 'package:flutter/material.dart';
 
 class PlantPressedScreen extends StatelessWidget {
   final String plantName;
   final String description;
+  final String imagePath;  // Make sure imagePath is defined here
 
   const PlantPressedScreen({
     required this.plantName,
     required this.description,
+    required this.imagePath,  // Add imagePath here
     super.key,
   });
 
@@ -17,12 +20,22 @@ class PlantPressedScreen extends StatelessWidget {
         title: Text(plantName),
         backgroundColor: Colors.lightGreen,
       ),
-      body: Center(
+      body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              ClipRRect(
+                borderRadius: BorderRadius.circular(15.0),
+                child: Image.asset(
+                  imagePath,  // Ensure that imagePath is being used here
+                  fit: BoxFit.cover,
+                  height: 250,
+                  width: double.infinity,
+                ),
+              ),
+              SizedBox(height: 20),
               Text(
                 plantName,
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
@@ -41,3 +54,4 @@ class PlantPressedScreen extends StatelessWidget {
     );
   }
 }
+*/

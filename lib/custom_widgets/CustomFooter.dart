@@ -24,8 +24,9 @@ class FooterWidget extends StatelessWidget {
         height: 60,
         color: Colors.lightGreen,
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween, // Space between items
           children: [
+            // GitHub Icon on the left side
             IconButton(
               icon: Icon(
                 Icons.open_in_new,
@@ -35,6 +36,20 @@ class FooterWidget extends StatelessWidget {
               onPressed: _launchURL, // Launch the URL when pressed
               tooltip: 'Go to GitHub',
             ),
+            // Hollow Star Icon in the center
+            IconButton(
+              icon: Icon(
+                Icons.star_border,
+                color: Colors.black, // Color of the hollow star icon
+                size: 30, // Increase the size of the icon
+              ),
+              onPressed: () {
+                // Define what happens when the star icon is pressed
+              },
+              tooltip: 'Favorites',
+            ),
+            // Placeholder for the right side if needed, or remove it if only two icons are used
+            SizedBox(width: 30), // Adjust this or replace with another button if needed
           ],
         ),
       ),

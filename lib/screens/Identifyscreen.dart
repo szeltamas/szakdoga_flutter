@@ -9,7 +9,6 @@ import 'package:image/image.dart' as img;
 import 'ResultScreen.dart';
 import '../custom_widgets/CustomFooter.dart'; // Import your FooterWidget
 
-
 class IdentifyScreen extends StatefulWidget {
   const IdentifyScreen({super.key});
 
@@ -58,8 +57,8 @@ class _IdentifyScreenState extends State<IdentifyScreen> {
     }
   }
 
-  Future<void> _predictImage(File image) async {
-    var inputImage = await _preprocessImage(image);
+  Future<void> _predictImage(File imageFile) async {
+    var inputImage = await _preprocessImage(imageFile);
     var output = List.generate(1, (b) => List<double>.filled(_labels!.length, 0.0));
 
     // Run inference
@@ -77,7 +76,7 @@ class _IdentifyScreenState extends State<IdentifyScreen> {
         MaterialPageRoute(
           builder: (context) => ResultScreen(
             classificationResult: "No result found",
-            image: image,
+            imageFile: imageFile, // Use imageFile for passing the image file
           ),
         ),
       );
@@ -88,16 +87,16 @@ class _IdentifyScreenState extends State<IdentifyScreen> {
         MaterialPageRoute(
           builder: (context) => ResultScreen(
             classificationResult: _labels![predictedClass],
-            image: image,
+            imageFile: imageFile, // Use imageFile for passing the image file
           ),
         ),
       );
     }
   }
 
-  Future<List<List<List<List<double>>>>> _preprocessImage(File image) async {
+  Future<List<List<List<List<double>>>>> _preprocessImage(File imageFile) async {
     final inputSize = 128;
-    final imageBytes = await image.readAsBytes();
+    final imageBytes = await imageFile.readAsBytes();
     img.Image? decodedImage = img.decodeImage(imageBytes);
 
     // Resize the image

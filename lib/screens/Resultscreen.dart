@@ -6,12 +6,14 @@ import '../custom_widgets/CustomFooter.dart'; // Import your FooterWidget
 
 class ResultScreen extends StatefulWidget {
   final String classificationResult;
-  final File image;
+  final File? imageFile; // File for image from the classifier (optional)
+  final String? imagePath; // String for image asset from the browse screen (optional)
 
   const ResultScreen({
     Key? key,
     required this.classificationResult,
-    required this.image,
+    this.imageFile, // File image from classification
+    this.imagePath, // Asset image from BrowseScreen
   }) : super(key: key);
 
   @override
@@ -34,7 +36,7 @@ class _ResultScreenState extends State<ResultScreen> {
 
     // Find the description based on classificationResult
     for (var plant in data['plant_descriptions']) {
-      if (plant['name'] == widget.classificationResult) {
+      if (plant['name'].toLowerCase() == widget.classificationResult.toLowerCase()) {
         setState(() {
           _plantDescription = plant['description'];
         });
@@ -47,10 +49,10 @@ class _ResultScreenState extends State<ResultScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Classification Result'),
+        title: Text(widget.classificationResult),
         backgroundColor: Colors.lightGreen,
       ),
-      body: Stack( // Use Stack to position FooterWidget
+      body: Stack(
         children: [
           Container(
             color: Colors.white, // Set a solid background color
@@ -72,8 +74,15 @@ class _ResultScreenState extends State<ResultScreen> {
                     children: [
                       ClipRRect(
                         borderRadius: BorderRadius.vertical(top: Radius.circular(15)),
-                        child: Image.file(
-                          widget.image,
+                        child: widget.imageFile != null
+                            ? Image.file(
+                          widget.imageFile!,
+                          fit: BoxFit.cover,
+                          height: 240,
+                          width: double.infinity,
+                        )
+                            : Image.asset(
+                          widget.imagePath!,
                           fit: BoxFit.cover,
                           height: 240,
                           width: double.infinity,
@@ -104,6 +113,28 @@ class _ResultScreenState extends State<ResultScreen> {
                     ),
                   ),
               ],
+            ),
+          ),
+          // Positioned button above the footer
+          Positioned(
+            bottom: 70, // Position the button above the footer
+            left: 16,
+            right: 16,
+            child: ElevatedButton(
+              onPressed: () {
+                // Leave this empty for now
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.green, // Updated for background color
+                padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15),
+                ),
+              ),
+              child: Text(
+                "Add to favourites",
+                style: TextStyle(fontSize: 18, color: Colors.white),
+              ),
             ),
           ),
           const FooterWidget(), // Add the FooterWidget at the bottom

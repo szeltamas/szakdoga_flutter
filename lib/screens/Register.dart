@@ -102,6 +102,7 @@ class _RegisterState extends State<Register> {
                           ),
                           onPressed: () async {
                             if (_formKey.currentState!.validate()) {
+
                               dynamic result = await _auth.registerWithEmailAndPassword(email, password);
                               if(result == null)
                                 {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'dart:convert';
-import 'PlantPressedScreen.dart';
+import 'ResultScreen.dart'; // Import ResultScreen
 
 class BrowseScreen extends StatelessWidget {
   const BrowseScreen({super.key});
@@ -86,12 +86,13 @@ class BrowseScreen extends StatelessWidget {
                                 return GestureDetector(
                                   onTap: () {
                                     final description = plantDescriptions[plantName] ?? 'No description available.';
+                                    // Navigate to ResultScreen
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                        builder: (context) => PlantPressedScreen(
-                                          plantName: fileName,
-                                          description: description,
+                                        builder: (context) => ResultScreen(
+                                          classificationResult: fileName,
+                                          imagePath: imagePath, // Pass imagePath for asset image
                                         ),
                                       ),
                                     );
