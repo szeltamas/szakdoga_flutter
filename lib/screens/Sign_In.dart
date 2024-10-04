@@ -3,6 +3,7 @@ import 'package:szakdoga/services/Auth.dart';
 import '../custom_widgets/CustomButton.dart'; // Import your custom button widget
 import '../custom_widgets/CustomFooter.dart'; // Import your footer widget
 import 'Register.dart'; // Import the Register screen
+import 'Loading.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn({super.key});
@@ -15,6 +16,7 @@ class _SignInState extends State<SignIn> {
 
   final AuthService _auth = AuthService();
   final _formKey = GlobalKey<FormState>();
+  bool loading = false;
 
   String email = '';
   String password = '';
@@ -22,7 +24,7 @@ class _SignInState extends State<SignIn> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return loading ? LoadingWidget() : Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.lightGreen,
         title: Row(
@@ -107,12 +109,14 @@ class _SignInState extends State<SignIn> {
                               ),
                               onPressed: () async {
                                 if (_formKey.currentState!.validate()) {
-                                  // Perform sign-in logic here
-
+                                  setState(() => loading = true);
                                   dynamic result = await _auth.signinWithEmailAndPassword(email, password);
                                   if(result == null)
                                   {
-                                    setState(() => error = 'Could not sign in with credentials');
+                                    setState(() {
+                                      error = 'Could not sign in with credentials';
+                                      loading = false;
+                                    });
                                   }
 
 

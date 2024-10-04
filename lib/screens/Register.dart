@@ -1,7 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:szakdoga/screens/Wrapper.dart';
 import 'package:szakdoga/services/Auth.dart';
 import '../custom_widgets/CustomFooter.dart'; // Import your footer widget
+import 'Loading.dart';
 
 class Register extends StatefulWidget {
   const Register({super.key});
@@ -14,6 +16,7 @@ class _RegisterState extends State<Register> {
 
   final AuthService _auth = AuthService();
   final _formKey = GlobalKey<FormState>();
+  bool loading = false;
 
   String email = '';
   String password = '';
@@ -21,7 +24,7 @@ class _RegisterState extends State<Register> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return loading ? LoadingWidget() : Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.lightGreen,
         title: Row(
@@ -102,12 +105,23 @@ class _RegisterState extends State<Register> {
                           ),
                           onPressed: () async {
                             if (_formKey.currentState!.validate()) {
-
+                              setState(() => loading = true);
                               dynamic result = await _auth.registerWithEmailAndPassword(email, password);
                               if(result == null)
                                 {
-                                  setState(() => error = 'Please supply a valid email');
+                                  setState(() {
+                                    error = 'Please supply a valid email';
+                                    loading = false;
+                                  });
                                 }
+                              else {
+                                print("Registering with $email and password");
+                                // Navigate back to Wrapper after successful registration
+                                Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => Wrapper()),
+                                );
+                              }
                               print("Registering with $email and password");
                             }
                           },
