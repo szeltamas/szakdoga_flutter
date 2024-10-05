@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:provider/provider.dart';
+import 'package:szakdoga/services/Database.dart';
 
 class AuthService
 {
@@ -17,6 +18,13 @@ class AuthService
     {
       UserCredential result = await _auth.createUserWithEmailAndPassword(email: email, password: password);
       User? user  = result.user;
+
+      //Create new document for user with uid
+      //await DatabaseService(uid: user.uid).updateUserData("");
+      if (user != null) {
+        // Create new document for the user with uid
+        await DatabaseService(uid: user.uid).updateUserData([]);
+      }
       return user;
     }
     catch(e)
