@@ -4,37 +4,17 @@ import '../custom_widgets/CustomButton.dart';
 import 'IdentifyScreen.dart'; // Import the IdentifyScreen
 import 'BrowseScreen.dart'; // Import the BrowseScreen
 import '../custom_widgets/CustomFooter.dart';
+import '../custom_widgets/CutomAppBar.dart'; // Import the CustomAppBar
 
 class MainPage extends StatelessWidget {
   const MainPage({super.key});
 
-
-
   @override
   Widget build(BuildContext context) {
-
     final AuthService _auth = AuthService();
 
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.lightGreen,
-        title: Row(
-          children: [
-            Icon(Icons.eco, color: Colors.black, size: 36), // Leaf icon
-            SizedBox(width: 10), // Space between icon and text
-            Text('Greenlike'), // Title text
-          ],
-        ),
-        centerTitle: true, // Center the title for consistency
-        actions: [
-          IconButton(
-            icon: Icon(Icons.logout, color: Colors.black), // Logout icon
-            onPressed: () async {
-              await _auth.signOut();
-            },
-          ),
-        ],
-      ),
+      appBar: CustomAppBar(), // Use the CustomAppBar here
       body: Stack(
         children: [
           Container(
