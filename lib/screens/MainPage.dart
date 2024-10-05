@@ -14,7 +14,7 @@ class MainPage extends StatelessWidget {
     final AuthService _auth = AuthService();
 
     return Scaffold(
-      appBar: CustomAppBar(), // Use the CustomAppBar here
+      appBar: CustomAppBar(),
       body: Stack(
         children: [
           Container(

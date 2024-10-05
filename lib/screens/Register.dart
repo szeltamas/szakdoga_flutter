@@ -13,7 +13,6 @@ class Register extends StatefulWidget {
 }
 
 class _RegisterState extends State<Register> {
-
   final AuthService _auth = AuthService();
   final _formKey = GlobalKey<FormState>();
   bool loading = false;
@@ -24,14 +23,16 @@ class _RegisterState extends State<Register> {
 
   @override
   Widget build(BuildContext context) {
-    return loading ? LoadingWidget() : Scaffold(
+    return loading
+        ? LoadingWidget()
+        : Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.lightGreen,
         title: Row(
           children: [
             Icon(Icons.eco, color: Colors.black, size: 36), // Leaf icon
             SizedBox(width: 10), // Space between icon and text
-            Text('Register', style: TextStyle(color: Colors.black)), // Title text in black
+            Text('Sign Up', style: TextStyle(color: Colors.black)), // Title text in black
           ],
         ),
         centerTitle: true,
@@ -66,7 +67,7 @@ class _RegisterState extends State<Register> {
                               borderRadius: BorderRadius.circular(12.0),
                             ),
                           ),
-                          validator: (val) => val!.isEmpty ? null : null,
+                          validator: (val) => val!.isEmpty ? 'Enter an email' : null, // Adjusted for validation message
                           onChanged: (val) {
                             setState(() => email = val);
                           },
@@ -86,7 +87,7 @@ class _RegisterState extends State<Register> {
                             ),
                           ),
                           obscureText: true,
-                          validator: (val) => val!.length < 6 ? null : null,
+                          validator: (val) => val!.length < 6 ? 'Password must be at least 6 characters' : null, // Adjusted for validation message
                           onChanged: (val) {
                             setState(() => password = val);
                           },
@@ -107,14 +108,12 @@ class _RegisterState extends State<Register> {
                             if (_formKey.currentState!.validate()) {
                               setState(() => loading = true);
                               dynamic result = await _auth.registerWithEmailAndPassword(email, password);
-                              if(result == null)
-                                {
-                                  setState(() {
-                                    error = 'Please supply a valid email';
-                                    loading = false;
-                                  });
-                                }
-                              else {
+                              if (result == null) {
+                                setState(() {
+                                  error = 'Please supply a valid email';
+                                  loading = false;
+                                });
+                              } else {
                                 print("Registering with $email and password");
                                 // Navigate back to Wrapper after successful registration
                                 Navigator.pushReplacement(
@@ -125,10 +124,23 @@ class _RegisterState extends State<Register> {
                               print("Registering with $email and password");
                             }
                           },
-                          child: Text("Register", style: TextStyle(fontSize: 18)), // Larger text for better readability
+                          child: Text("Sign Up", style: TextStyle(fontSize: 18)), // Larger text for better readability
                         ),
-                        SizedBox(height: 12.0,),
-                        Text(error, style: TextStyle(color: Colors.red, fontSize: 14.0),)
+                        SizedBox(height: 12.0),
+
+                        // Error message display with white background only when there is an error
+                        if (error.isNotEmpty) // Conditionally render the error message
+                          Container(
+                            decoration: BoxDecoration(
+                              color: Colors.white.withOpacity(0.85), // White background for the error message
+                              borderRadius: BorderRadius.circular(12), // Rounded edges
+                            ),
+                            padding: EdgeInsets.all(10), // Padding for better appearance
+                            child: Text(
+                              error,
+                              style: TextStyle(color: Colors.red, fontSize: 14.0),
+                            ),
+                          ),
                       ],
                     ),
                   ),
