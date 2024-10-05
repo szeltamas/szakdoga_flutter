@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart'; // Import url_launcher package
+import 'package:szakdoga/screens/FavoritesScreen.dart'; // Import the new FavoritesScreen
 
 class FooterWidget extends StatelessWidget {
   const FooterWidget({super.key});
@@ -28,7 +29,7 @@ class FooterWidget extends StatelessWidget {
           children: [
             // GitHub Icon on the left side
             IconButton(
-              icon: Icon(
+              icon: const Icon(
                 Icons.open_in_new,
                 color: Colors.black,
                 size: 30, // Increase the size of the icon
@@ -38,18 +39,22 @@ class FooterWidget extends StatelessWidget {
             ),
             // Hollow Star Icon in the center
             IconButton(
-              icon: Icon(
+              icon: const Icon(
                 Icons.star_border,
                 color: Colors.black, // Color of the hollow star icon
                 size: 30, // Increase the size of the icon
               ),
               onPressed: () {
-                // Define what happens when the star icon is pressed
+                // Navigate to the FavoritesScreen when the icon is pressed
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const FavoritesScreen()),
+                );
               },
               tooltip: 'Favorites',
             ),
             // Placeholder for the right side if needed, or remove it if only two icons are used
-            SizedBox(width: 30), // Adjust this or replace with another button if needed
+            const SizedBox(width: 30), // Adjust this or replace with another button if needed
           ],
         ),
       ),

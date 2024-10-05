@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'dart:io';
 import 'dart:convert'; // Import for JSON decoding
 import 'package:flutter/services.dart'; // Import for rootBundle
+import 'package:firebase_auth/firebase_auth.dart'; // Import Firebase Auth
 import '../custom_widgets/CustomFooter.dart'; // Import your FooterWidget
+import '../services/Database.dart'; // Import the DatabaseService
 
 class ResultScreen extends StatefulWidget {
   final String classificationResult;
@@ -22,11 +24,13 @@ class ResultScreen extends StatefulWidget {
 
 class _ResultScreenState extends State<ResultScreen> {
   String? _plantDescription;
+  String? uid; // For storing the user's UID
 
   @override
   void initState() {
     super.initState();
     _loadPlantDescription();
+    _getCurrentUser(); // Fetch the current user's UID
   }
 
   Future<void> _loadPlantDescription() async {
@@ -42,6 +46,26 @@ class _ResultScreenState extends State<ResultScreen> {
         });
         break;
       }
+    }
+  }
+
+  Future<void> _getCurrentUser() async {
+    // Get the current user's UID
+    User? user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      setState(() {
+        uid = user.uid; // Store the user's UID
+      });
+    }
+  }
+
+  Future<void> _addPlantToFavorites() async {
+    if (uid != null) {
+      // Use the DatabaseService to add the plant name to favorites
+      await DatabaseService(uid: uid!).addPlantToFavorites(widget.classificationResult);
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text('${widget.classificationResult} added to favorites!'),
+      ));
     }
   }
 
@@ -121,8 +145,8 @@ class _ResultScreenState extends State<ResultScreen> {
             left: 16,
             right: 16,
             child: ElevatedButton(
-              onPressed: () {
-                // Leave this empty for now
+              onPressed: () async {
+                await _addPlantToFavorites(); // Call the function to add plant to favorites
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.green, // Updated for background color
