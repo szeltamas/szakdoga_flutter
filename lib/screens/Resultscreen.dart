@@ -14,8 +14,8 @@ class ResultScreen extends StatefulWidget {
   const ResultScreen({
     Key? key,
     required this.classificationResult,
-    this.imageFile, // File image from classification
-    this.imagePath, // Asset image from BrowseScreen
+    this.imageFile,
+    this.imagePath,
   }) : super(key: key);
 
   @override
@@ -24,21 +24,20 @@ class ResultScreen extends StatefulWidget {
 
 class _ResultScreenState extends State<ResultScreen> {
   String? _plantDescription;
-  String? uid; // For storing the user's UID
+  String? uid;
+  bool isFavorite = false; // To track if the plant is in favorites
 
   @override
   void initState() {
     super.initState();
     _loadPlantDescription();
-    _getCurrentUser(); // Fetch the current user's UID
+    _getCurrentUser();
   }
 
   Future<void> _loadPlantDescription() async {
-    // Load JSON file
     final String response = await rootBundle.loadString('custom_files/plants.json');
     final data = json.decode(response);
 
-    // Find the description based on classificationResult
     for (var plant in data['plant_descriptions']) {
       if (plant['name'].toLowerCase() == widget.classificationResult.toLowerCase()) {
         setState(() {
@@ -50,22 +49,44 @@ class _ResultScreenState extends State<ResultScreen> {
   }
 
   Future<void> _getCurrentUser() async {
-    // Get the current user's UID
     User? user = FirebaseAuth.instance.currentUser;
     if (user != null) {
       setState(() {
-        uid = user.uid; // Store the user's UID
+        uid = user.uid;
+      });
+      await _checkIfFavorite();
+    }
+  }
+
+  Future<void> _checkIfFavorite() async {
+    if (uid != null) {
+      List<String> favoritePlants = await DatabaseService(uid: uid!).getFavoritePlants();
+      setState(() {
+        isFavorite = favoritePlants.contains(widget.classificationResult);
       });
     }
   }
 
-  Future<void> _addPlantToFavorites() async {
+  Future<void> _toggleFavorite() async {
     if (uid != null) {
-      // Use the DatabaseService to add the plant name to favorites
-      await DatabaseService(uid: uid!).addPlantToFavorites(widget.classificationResult);
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text('${widget.classificationResult} added to favorites!'),
-      ));
+      if (isFavorite) {
+        await DatabaseService(uid: uid!).removePlantFromFavorites(widget.classificationResult);
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text('${widget.classificationResult} removed from favorites!'),
+        ));
+      } else {
+        await DatabaseService(uid: uid!).addPlantToFavorites(widget.classificationResult);
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text('${widget.classificationResult} added to favorites!'),
+        ));
+      }
+
+      setState(() {
+        isFavorite = !isFavorite;
+      });
+
+      // Return true to indicate favorites were updated
+      Navigator.pop(context, true);
     }
   }
 
@@ -79,40 +100,24 @@ class _ResultScreenState extends State<ResultScreen> {
       body: Stack(
         children: [
           Container(
-            color: Colors.white, // Set a solid background color
-            padding: const EdgeInsets.all(16.0), // Add some padding to the body
+            color: Colors.white,
+            padding: const EdgeInsets.all(16.0),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.start, // Align to the top
               children: [
                 Container(
-                  width: double.infinity,
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                    border: Border.all(color: Colors.black, width: 2),
                     borderRadius: BorderRadius.circular(15),
-                    border: Border.all(
-                      color: Colors.black, // Border color
-                      width: 2, // Border width
-                    ),
                   ),
                   child: Column(
                     children: [
                       ClipRRect(
                         borderRadius: BorderRadius.vertical(top: Radius.circular(15)),
                         child: widget.imageFile != null
-                            ? Image.file(
-                          widget.imageFile!,
-                          fit: BoxFit.cover,
-                          height: 240,
-                          width: double.infinity,
-                        )
-                            : Image.asset(
-                          widget.imagePath!,
-                          fit: BoxFit.cover,
-                          height: 240,
-                          width: double.infinity,
-                        ),
+                            ? Image.file(widget.imageFile!, fit: BoxFit.cover, height: 240, width: double.infinity)
+                            : Image.asset(widget.imagePath!, fit: BoxFit.cover, height: 240, width: double.infinity),
                       ),
-                      SizedBox(height: 10), // Space between image and name
+                      SizedBox(height: 10),
                       Text(
                         widget.classificationResult,
                         style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
@@ -121,49 +126,47 @@ class _ResultScreenState extends State<ResultScreen> {
                     ],
                   ),
                 ),
-                SizedBox(height: 20), // Increased space between name and description
+                SizedBox(height: 20),
                 if (_plantDescription != null)
                   Container(
-                    width: double.infinity,
                     padding: EdgeInsets.all(10),
                     decoration: BoxDecoration(
-                      color: Colors.white, // Solid background for the description
                       borderRadius: BorderRadius.circular(15),
                     ),
                     child: Text(
                       _plantDescription!,
                       style: TextStyle(fontSize: 16),
-                      textAlign: TextAlign.justify, // Justified text
+                      textAlign: TextAlign.justify,
                     ),
                   ),
               ],
             ),
           ),
-          // Positioned button above the footer
           Positioned(
-            bottom: 70, // Position the button above the footer
+            bottom: 70,
             left: 16,
             right: 16,
             child: ElevatedButton(
               onPressed: () async {
-                await _addPlantToFavorites(); // Call the function to add plant to favorites
+                await _toggleFavorite();
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.green, // Updated for background color
+                backgroundColor: isFavorite ? Colors.green : Colors.green,
                 padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(15),
                 ),
               ),
               child: Text(
-                "Add to favourites",
+                isFavorite ? "Remove from favorites" : "Add to favorites",
                 style: TextStyle(fontSize: 18, color: Colors.white),
               ),
             ),
           ),
-          const FooterWidget(), // Add the FooterWidget at the bottom
+          const FooterWidget(),
         ],
       ),
     );
   }
 }
+

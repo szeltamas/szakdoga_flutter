@@ -1,10 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:szakdoga/custom_widgets/CustomFooter.dart';
 import 'ResultScreen.dart'; // Import the ResultScreen
 
-class FavoritesScreen extends StatelessWidget {
+class FavoritesScreen extends StatefulWidget {
   const FavoritesScreen({super.key});
+
+  @override
+  _FavoritesScreenState createState() => _FavoritesScreenState();
+}
+
+class _FavoritesScreenState extends State<FavoritesScreen> {
+  Future<List<String>>? favoritePlantsFuture;
+
+  @override
+  void initState() {
+    super.initState();
+    favoritePlantsFuture = _getFavoritePlants(); // Load the favorites when the screen initializes
+  }
 
   // Method to retrieve favorite plants for the current user
   Future<List<String>> _getFavoritePlants() async {
@@ -28,6 +42,13 @@ class FavoritesScreen extends StatelessWidget {
     return []; // Return an empty list if no favorites are found
   }
 
+  // Method to refresh the favorites when changes are detected
+  void _refreshFavorites() {
+    setState(() {
+      favoritePlantsFuture = _getFavoritePlants(); // Reload the favorite plants
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,7 +67,7 @@ class FavoritesScreen extends StatelessWidget {
             ),
           ),
           FutureBuilder<List<String>>(
-            future: _getFavoritePlants(),
+            future: favoritePlantsFuture,
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return const Center(child: CircularProgressIndicator());
@@ -77,7 +98,7 @@ class FavoritesScreen extends StatelessWidget {
 
                     return GestureDetector(
                       onTap: () {
-                        // Navigate to the ResultScreen when a favorite plant is tapped
+                        // Navigate to the ResultScreen and check for changes when returning
                         Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -86,7 +107,12 @@ class FavoritesScreen extends StatelessWidget {
                               imagePath: 'images/plant_images/$plantName.jpg', // Assuming image path structure
                             ),
                           ),
-                        );
+                        ).then((result) {
+                          if (result == true) {
+                            // Refresh the favorites list if changes were made
+                            _refreshFavorites();
+                          }
+                        });
                       },
                       child: Container(
                         decoration: BoxDecoration(
@@ -125,6 +151,7 @@ class FavoritesScreen extends StatelessWidget {
               );
             },
           ),
+          //const FooterWidget(),
         ],
       ),
     );
